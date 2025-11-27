@@ -98,15 +98,33 @@ func (c *Context) GetPage() (pageIndex int64, pageSize int64) {
 }
 
 // ResponseOK 返回成功
+// 已废弃: 建议使用 ResponseSuccess() 替代，保持向后兼容
 func (c *Context) ResponseOK() {
 	c.JSON(http.StatusOK, gin.H{
 		"status": http.StatusOK,
 	})
 }
 
+// ResponseSuccess 返回标准成功响应（推荐）
+// 返回格式: {"status": 0}
+func (c *Context) ResponseSuccess() {
+	c.JSON(http.StatusOK, gin.H{
+		"status": 0,
+	})
+}
+
 // Response Response
 func (c *Context) Response(data interface{}) {
 	c.JSON(http.StatusOK, data)
+}
+
+// ResponseWithData 返回带数据的标准成功响应（推荐）
+// 返回格式: {"status": 0, "data": {...}}
+func (c *Context) ResponseWithData(data interface{}) {
+	c.JSON(http.StatusOK, gin.H{
+		"status": 0,
+		"data":   data,
+	})
 }
 
 // ResponseWithStatus ResponseWithStatus
