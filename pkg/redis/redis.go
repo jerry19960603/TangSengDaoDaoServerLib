@@ -408,3 +408,28 @@ func (rc *Conn) LPUSH(key string, values ...interface{}) (int64, error) {
 func (rc *Conn) GetKeys(key string) ([]string, error) {
 	return rc.client.Keys(key).Result()
 }
+
+// RPush 将一个或多个值插入到列表的尾部(右边)
+func (rc *Conn) RPush(key string, values ...interface{}) (int64, error) {
+	return rc.client.RPush(key, values...).Result()
+}
+
+// SetNX 只在键不存在时设置键的值
+// 设置成功返回true，键已存在返回false
+func (rc *Conn) SetNX(key string, value interface{}, expiration time.Duration) (bool, error) {
+	return rc.client.SetNX(key, value, expiration).Result()
+}
+
+// Eval 执行Lua脚本
+func (rc *Conn) Eval(script string, keys []string, args ...interface{}) (interface{}, error) {
+	return rc.client.Eval(script, keys, args...).Result()
+}
+
+// SCard 获取集合的成员数
+func (rc *Conn) SCard(key string) (int64, error) {
+	result, err := rc.client.SCard(key).Result()
+	if err == rd.Nil {
+		return 0, nil
+	}
+	return result, err
+}
