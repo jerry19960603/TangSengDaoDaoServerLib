@@ -50,6 +50,12 @@ const (
 	// CMD 消息
 	CMD ContentType = 99
 
+	// ---------- 钱包类 ----------
+	// RedPacket 红包消息
+	RedPacket ContentType = 100
+	// Transfer 转账消息
+	Transfer ContentType = 101
+
 	// ---------- 系统类 ----------
 	// Tip 只作为提醒无任何操作类型
 	Tip ContentType = 2000
@@ -115,6 +121,10 @@ func GetDisplayText(contentType int) string {
 		return "emoji"
 	} else if contentType == RichText.Int() {
 		return "富文本消息"
+	} else if contentType == RedPacket.Int() {
+		return "红包"
+	} else if contentType == Transfer.Int() {
+		return "转账"
 	}
 	return "未知消息类型"
 }
@@ -144,6 +154,10 @@ func (c ContentType) String() string {
 		return "GroupUpdate"
 	case RevokeMessage:
 		return "RevokeMessage"
+	case RedPacket:
+		return "RedPacket"
+	case Transfer:
+		return "Transfer"
 	}
 	return fmt.Sprintf("%d", c)
 }
