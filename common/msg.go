@@ -55,6 +55,8 @@ const (
 	RedPacket ContentType = 100
 	// Transfer 转账消息
 	Transfer ContentType = 101
+	// RichCard 富卡片消息（系统通知、商业推广等高级卡片）
+	RichCard ContentType = 102
 
 	// ---------- 系统类 ----------
 	// Tip 只作为提醒无任何操作类型
@@ -125,6 +127,8 @@ func GetDisplayText(contentType int) string {
 		return "红包"
 	} else if contentType == Transfer.Int() {
 		return "转账"
+	} else if contentType == RichCard.Int() {
+		return "富卡片消息"
 	}
 	return "未知消息类型"
 }
@@ -158,6 +162,8 @@ func (c ContentType) String() string {
 		return "RedPacket"
 	case Transfer:
 		return "Transfer"
+	case RichCard:
+		return "RichCard"
 	}
 	return fmt.Sprintf("%d", c)
 }
