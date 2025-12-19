@@ -52,9 +52,9 @@ const (
 
 	// ---------- 钱包类 ----------
 	// RedPacket 红包消息
-	RedPacket ContentType = 100
+	RedPacket ContentType = 201
 	// Transfer 转账消息
-	Transfer ContentType = 101
+	Transfer ContentType = 202
 	// RichCard 富卡片消息（系统通知、商业推广等高级卡片）
 	RichCard ContentType = 102
 
